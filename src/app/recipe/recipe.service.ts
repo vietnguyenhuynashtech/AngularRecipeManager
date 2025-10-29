@@ -40,7 +40,18 @@ export class RecipeService {
     return this.recipes;
   }
 
+  getRecipe(id: number): Recipe | undefined {
+    return this.recipes.find(recipe => recipe.id === id);
+  }
+
   addRecipe(recipe: Recipe): void {
     this.recipes.push(recipe);
+  }
+
+  updateRecipe(id: number | undefined, updatedRecipe: Recipe): void {
+    const index = this.recipes.findIndex(recipe => recipe.id === id);
+    if (index !== -1) {
+      this.recipes[index] = { ...updatedRecipe, id: id! };
+    }
   }
 }
