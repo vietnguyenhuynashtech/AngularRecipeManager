@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe/recipe.model';
 import { RecipeService } from '../recipe/recipe.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.scss',
 })
