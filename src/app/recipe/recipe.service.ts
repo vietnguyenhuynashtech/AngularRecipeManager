@@ -7,24 +7,28 @@ import { Recipe } from "./recipe.model";
 export class RecipeService {
   private recipes: Recipe[] = [
     {
+      id: 1,
       name: 'Sushi',
       description: 'Delicious sushi with fresh fish and rice.',
       catetory: 'Japanese',
       imagePath: 'https://www.happyfoodstube.com/wp-content/uploads/2016/03/homemade-sushi-picture.jpg'
     },
     {
+      id: 2,
       name: 'Tacos',
       description: 'Spicy and flavorful Mexican tacos.',
       catetory: 'Mexican',
       imagePath: 'https://www.happyfoodstube.com/wp-content/uploads/2019/04/buffalo-chicken-tacos-picture.jpg'
     },
     {
+      id: 3,
       name: 'Pizza',
       description: 'Classic Italian pizza with mozzarella and tomato sauce.',
       catetory: 'Italian',
       imagePath: 'https://www.happyfoodstube.com/wp-content/uploads/2015/12/homemade-pizza-dough-picture.jpg'
     },
     {
+      id: 4,
       name: 'Croissant',
       description: 'Buttery and flaky French pastry.',
       catetory: 'French',
