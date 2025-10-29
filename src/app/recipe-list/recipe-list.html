@@ -1,1 +1,13 @@
-<p>recipe-list works!</p>
+<div class="row">
+    @for (recipe of recipes; track recipe.name) {
+        <div class="col-12 col-sm-6 col-lg-4 mb-4" style="max-width: 32rem;">
+            <div class="card">
+                <img class="card-img-top" [src]="recipe.imagePath" alt="{{ recipe.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.name }}</h5>
+                    <p class="card-text">{{ recipe.description }}</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
