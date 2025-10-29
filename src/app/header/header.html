@@ -1,0 +1,11 @@
+<header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+    <li class="nav-item"><a routerLink="/" class="nav-link" 
+        [ngClass]="{'active': activeLink === '/'}"
+        (click)="setActiveLink('/')"
+        aria-current="page">Home</a></li>
+    <li class="nav-item"><a routerLink="/recipes" class="nav-link" 
+        [ngClass]="{'active': activeLink === '/recipes'}"
+        (click)="setActiveLink('/recipes')">Recipe List</a></li>
+    </ul>
+</header>
