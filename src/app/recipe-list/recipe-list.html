@@ -1,5 +1,5 @@
 <div class="row">
-    @for (recipe of recipes; track recipe.id) {
+    @for (recipe of recipes$ | async; track recipe.id) {
         <div class="col-12 col-sm-6 col-lg-4 mb-4" style="max-width: 32rem;">
             <div class="card">
                 <img class="card-img-top" [src]="recipe.imagePath" alt="{{ recipe.name }}">
