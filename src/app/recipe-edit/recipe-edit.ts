@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../recipe/recipe.model';
@@ -16,7 +16,7 @@ export class RecipeEdit implements OnInit {
   public recipeId: number | undefined;
   public editMode: boolean = false;
   public recipeForm: FormGroup | undefined;
-  public imageUrl: string = '';
+  imageUrl = signal('');
 
   constructor(
     private route: ActivatedRoute,
@@ -32,20 +32,13 @@ export class RecipeEdit implements OnInit {
         this.recipeToEdit = recipe;
         this.editMode = true;
         this.recipeId = recipe.id;
+        this.imageUrl = signal(recipe.imagePath);
         this.recipeForm = new FormGroup({
           'name': new FormControl(recipe.name, Validators.required),
           'description': new FormControl(recipe.description, Validators.required),
           'catetory': new FormControl(recipe.catetory, Validators.required),
           'imagePath': new FormControl(recipe.imagePath, Validators.required)
         });
-      }
-
-      if (this.recipeForm) {
-          this.recipeForm.get('imagePath')?.valueChanges.subscribe(url => {
-              this.imageUrl = url;
-          });
-          // Set initial value immediately after initForm() runs
-          this.imageUrl = this.recipeForm.get('imagePath')!.value;
       }
     }
   }
@@ -63,5 +56,12 @@ export class RecipeEdit implements OnInit {
   // Method to handle canceling the form
   onCancel() {
     this.router.navigate(['../..'], { relativeTo: this.route });
+  }
+
+  onImagePathChange() {
+    if (this.recipeForm) {
+      const imagePath = this.recipeForm.get('imagePath')?.value;
+      this.imageUrl.set(imagePath);
+    }
   }
 }
