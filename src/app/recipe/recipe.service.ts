@@ -2,13 +2,13 @@ import { Injectable } from "@angular/core";
 import { Recipe } from "./recipe.model";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { ApiPaths } from '../config/api-paths';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   constructor(private http: HttpClient) {}
-  private apiUrl = 'http://localhost:5233/recipes';
   private recipes: Recipe[] = [
     {
       id: 1,
@@ -41,12 +41,11 @@ export class RecipeService {
   ];
 
   getRecipes(): Observable<Recipe[]> {
-    // Uses the HTTP GET method
-    return this.http.get<Recipe[]>(this.apiUrl); 
+    return this.http.get<Recipe[]>(ApiPaths.recipes); 
   }
 
-  getRecipe(id: number): Recipe | undefined {
-    return this.recipes.find(recipe => recipe.id === id);
+  getRecipe(id: number): Observable<Recipe> {
+    return this.http.get<Recipe>(`${ApiPaths.recipes}/${id}`);
   }
 
   addRecipe(recipe: Recipe): void {

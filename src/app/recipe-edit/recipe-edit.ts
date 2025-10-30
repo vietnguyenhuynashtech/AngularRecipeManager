@@ -27,19 +27,25 @@ export class RecipeEdit implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null && id !== undefined) {
-      const recipe = this.recipeService.getRecipe(parseInt(id));
-      if (recipe) {
-        this.recipeToEdit = recipe;
-        this.editMode = true;
-        this.recipeId = recipe.id;
-        this.imageUrl = signal(recipe.imagePath);
-        this.recipeForm = new FormGroup({
-          'name': new FormControl(recipe.name, Validators.required),
-          'description': new FormControl(recipe.description, Validators.required),
-          'catetory': new FormControl(recipe.catetory, Validators.required),
-          'imagePath': new FormControl(recipe.imagePath, Validators.required)
-        });
-      }
+      this.recipeService.getRecipe(parseInt(id)).subscribe({
+        next: (recipe) => {
+          if (recipe) {
+            this.recipeToEdit = recipe;
+            this.editMode = true;
+            this.recipeId = recipe.id;
+            this.imageUrl = signal(recipe.imagePath);
+            this.recipeForm = new FormGroup({
+              'name': new FormControl(recipe.name, Validators.required),
+              'description': new FormControl(recipe.description, Validators.required),
+              'catetory': new FormControl(recipe.catetory, Validators.required),
+              'imagePath': new FormControl(recipe.imagePath, Validators.required)
+            });
+          }
+        },
+        error: (err) => {
+          console.error('Failed to load recipe', err);
+        }
+      });
     }
   }
 
