@@ -14,6 +14,13 @@ export class RecipeList implements OnInit {
 
   constructor(private recipeService: RecipeService) {}
   ngOnInit(): void {
-    this.recipes = this.recipeService.getRecipes();
+    this.recipeService.getRecipes().subscribe({
+      next: (data) => {
+        this.recipes = data;
+      },
+      error: (err) => {
+        console.error('Failed to load recipes', err);
+      }
+    });
   }
 }

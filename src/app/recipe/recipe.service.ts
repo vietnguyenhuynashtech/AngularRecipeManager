@@ -1,10 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Recipe } from "./recipe.model";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
+  constructor(private http: HttpClient) {}
+  private apiUrl = 'http://localhost:5233/recipes';
   private recipes: Recipe[] = [
     {
       id: 1,
@@ -36,8 +40,9 @@ export class RecipeService {
     }
   ];
 
-  getRecipes(): Recipe[] {
-    return this.recipes;
+  getRecipes(): Observable<Recipe[]> {
+    // Uses the HTTP GET method
+    return this.http.get<Recipe[]>(this.apiUrl); 
   }
 
   getRecipe(id: number): Recipe | undefined {
