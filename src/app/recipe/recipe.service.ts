@@ -21,4 +21,8 @@ export class RecipeService {
   updateRecipe(id: number, updatedRecipe: Recipe): Observable<void> {
     return this.http.put<void>(`${ApiPaths.recipes}/${id}`, updatedRecipe);
   }
+
+  createRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(ApiPaths.recipes, recipe);
+  }
 }

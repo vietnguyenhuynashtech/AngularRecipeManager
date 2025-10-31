@@ -87,6 +87,11 @@
                 formControlName="category" 
                 class="form-control"
                 />
+                @if (recipeForm.get('category')?.invalid && recipeForm.get('category')?.touched) {
+                  <div class="text-danger">
+                    Category is required.
+                  </div>
+                }
             </div>
             </div>
         </div>

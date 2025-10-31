@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <div class="col-md-12 text-end">
+          <button 
+            type="submit" 
+            class="btn btn-success me-2" 
+            [disabled]="!recipeForm.valid">
+            Create
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-12">
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name" 
+              class="form-control"
+            />
+            @if (!recipeForm.get('name')?.valid && recipeForm.get('name')?.touched) {
+              <div class="alert alert-danger mt-1">
+                Name is required.
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group mb-3">
+            <label for="imagePath" class="form-label">Image URL</label>
+            <input 
+              type="text" 
+              id="imagePath"
+              formControlName="imagePath" 
+              class="form-control"
+            />
+            @if (!recipeForm.get('imagePath')?.valid && recipeForm.get('imagePath')?.touched) {
+              <div class="alert alert-danger mt-1">
+                Image URL is required.
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-12 mb-3">
+          @if (recipeForm.get('imagePath')?.value) {
+            <img 
+              [src]="recipeForm.get('imagePath')?.value" 
+              class="img-fluid" 
+              style="max-height: 200px;" 
+              alt="Image Preview"
+            />
+          }
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea 
+              id="description" 
+              formControlName="description" 
+              class="form-control" 
+              rows="4">
+            </textarea>
+            @if (!recipeForm.get('description')?.valid && recipeForm.get('description')?.touched) {
+              <div class="alert alert-danger mt-1">
+                Description is required.
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input 
+              type="text" 
+              id="category" 
+              formControlName="category" 
+              class="form-control"
+            />
+            @if (!recipeForm.get('category')?.valid && recipeForm.get('category')?.touched) {
+              <div class="alert alert-danger mt-1">
+                Category is required.
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

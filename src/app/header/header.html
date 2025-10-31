@@ -3,10 +3,12 @@
     <li class="nav-item"><a routerLink="/" class="nav-link" 
         routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}"
-        (click)="setActiveLink('/')"
         aria-current="page">Home</a></li>
     <li class="nav-item"><a routerLink="/recipes" class="nav-link" 
-        routerLinkActive="active"
-        (click)="setActiveLink('/recipes')">Recipe List</a></li>
+        routerLinkActive="active"        
+        [routerLinkActiveOptions]="{exact: true}">Recipe List</a></li>
+    <li class="nav-item"><a routerLink="/recipes/create" class="nav-link" 
+        routerLinkActive="active"        
+        [routerLinkActiveOptions]="{exact: true}">Create Recipe</a></li>
     </ul>
 </header>
