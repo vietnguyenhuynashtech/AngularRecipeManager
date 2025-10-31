@@ -48,10 +48,14 @@ export class RecipeEdit implements OnInit {
   }
 
   onSubmit() {
-    if (this.editMode && this.recipeId != undefined  && this.recipeForm != undefined) {
-      this.recipeService.updateRecipe(this.recipeId, this.recipeForm.value);
+    if (this.editMode && this.recipeId != undefined && this.recipeForm != undefined) {
+      this.recipeService.updateRecipe(this.recipeId, this.recipeForm.value).subscribe({
+        next: () => this.onCancel(),
+        error: err => console.error('Update failed', err)
+      });
+    } else {
+      this.onCancel();
     }
-    this.onCancel();
   }
   
   onCancel() {
