@@ -1,6 +1,7 @@
-@if (recipeForm) {
+@if (recipeToEdit$ | async; as recipeToEdit) {
+  @if (recipeForm) {
     <div class="row">
-    <div class="col-md-12">
+      <div class="col-md-12">
         <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
         
         <div class="row">
@@ -51,7 +52,7 @@
             </div>
         </div>
         
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-12 mb-3">
                 <img 
                 [src]="imageUrl()" 
@@ -93,4 +94,5 @@
         </form>
     </div>
     </div>
+  }
 }
